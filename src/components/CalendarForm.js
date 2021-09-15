@@ -1,23 +1,32 @@
 import React from "react";
 
 class CalendarForm extends React.Component {
-    state = { firstName: "", lastName: "", email: "", date: "", time: "" };
+    state = {
+        fields: { firstName: "", lastName: "", email: "", date: "", time: "" },
+        errors: {},
+    };
 
     handleChange = (e) => {
-        this.setState({ [e.target.name]: [e.target.value] });
+        let fields = this.state.fields;
+        fields[e.target.name] = e.target.value;
+        this.setState({ fields });
     };
 
     handleSubmit = (e) => {
         e.preventDefault();
-        // funkcja podana przez props ktora uaktualnia api i dodaje nowy task do state //
+        // funkcja podana przez props ktora uaktualnia state, api i dodaje nowy task do state //
         this.setState({
-            firstName: "",
-            lastName: "",
-            email: "",
-            date: "",
-            time: "",
+            fields: {
+                firstName: "",
+                lastName: "",
+                email: "",
+                date: "",
+                time: "",
+            },
         });
     };
+
+    handleValidation = () => {};
 
     render() {
         return (
@@ -34,7 +43,7 @@ class CalendarForm extends React.Component {
                     <input
                         type="text"
                         name="firstName"
-                        value={this.state.firstName}
+                        value={this.state.fields["firstName"]}
                         id="firstName"
                         onChange={this.handleChange}
                     ></input>
@@ -42,7 +51,7 @@ class CalendarForm extends React.Component {
                     <input
                         type="text"
                         name="lastName"
-                        value={this.state.lastName}
+                        value={this.state.fields["lastName"]}
                         id="lastName"
                         onChange={this.handleChange}
                     ></input>
@@ -50,7 +59,7 @@ class CalendarForm extends React.Component {
                     <input
                         type="text"
                         name="email"
-                        value={this.state.email}
+                        value={this.state.fields["email"]}
                         id="email"
                         onChange={this.handleChange}
                     ></input>
@@ -58,7 +67,7 @@ class CalendarForm extends React.Component {
                     <input
                         type="text"
                         name="date"
-                        value={this.state.date}
+                        value={this.state.fields["date"]}
                         id="date"
                         onChange={this.handleChange}
                     ></input>
@@ -66,7 +75,7 @@ class CalendarForm extends React.Component {
                     <input
                         type="text"
                         name="time"
-                        value={this.state.time}
+                        value={this.state.fields["time"]}
                         id="time"
                         onChange={this.handleChange}
                     ></input>
