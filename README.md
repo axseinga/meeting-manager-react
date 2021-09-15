@@ -1,239 +1,70 @@
-> ⭐ ***README** to coś więcej niż opis. Poprzez nie **pokazujesz swoje mocne strony** – swoją dokładność, sposób myślenia i podejście do rozwiązywania problemów. Niech Twoje README pokaże, że masz **świetne predyspozycje do rozwoju!***
-> 
-> 🎁 *Zacznij od razu. Skorzystaj z **[szablonu README i wskazówek](https://github.com/devmentor-pl/readme-template)**.* 
+# Getting Started with Create React App
 
-&nbsp;
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Available Scripts
 
-# React Calendar
+In the project directory, you can run:
 
-Tym razem będziemy wykorzystywać bibliotekę React do zbudowania prostej bazy danych przechowującej informacje o terminie spotkania z konkretną osobą (pobieramy przez formularz datę, godzinę, imię, nazwisko oraz email).
+### `npm start`
 
-Szczególną uwagę należy zwrócić na kompozycje (czyli podział na mniejsze komponenty), odpowiednie umiejscowienie i wykorzystanie `state` w celu komunikacji poszczególnych komponentów ze sobą poprzez `props`.
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-Dane będziemy przechowywać na lokalnym API, wykorzystując gotowe rozwiązanie [json-server](https://github.com/typicode/json-server). Wspomniane rozwiązania zainstalujemy dzięki [npm](<https://pl.wikipedia.org/wiki/Npm_(manager_pakiet%C3%B3w)>) więc musimy mieć w systemie [Node.js](https://nodejs.org) w wersji co najmniej 10.16.
+The page will reload if you make edits.\
+You will also see any lint errors in the console.
 
-Jeśli mamy API to będziemy chcieli wykorzystywać `fetch` do pobierania i zapisywania danych.
+### `npm test`
 
-## Jaki mamy problem do rozwiązania
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-Nasz znajomy [CEO](https://pl.wikipedia.org/wiki/Dyrektor_generalny) ma problem z organizacją swojego planu dnia ponieważ ciężko mu bez zbiorczej listy spotkań odpowiednio ustawić plan dnia na konkretny dzień.
+### `npm run build`
 
-Ty jako dobry kolega (i dobry programista) postanowiłeś mu pomóc - mając z tyłu głowy, że projekt może się rozwinąć.
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-## Niezbędne narzędzia
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
 
-Na początek musimy przygotować nasze miejsce pracy. Projekt jest mały więc na poczatek wykorzystamy gotowe rozwiązania, aby nie tracić czasu na konfigurację. Na początku najważniejsze jest działające [MVP](http://www.biznesowerewolucje.com/mvp-minimum-viable-product-praktycznie/).
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### Create React App
+### `npm run eject`
 
-Wykorzystamy paczkę npm-ową w celu skonfigurowania sobie React-a. Jeśli mamy node.js w wersji równej lub wyższej niż 10.16 oraz npm >= 5.2 to wystarczy, że uruchomisz
+**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-```javascript
-npx create-react-app@3 .
-```
+If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Znak `.` oznacza, że struktura aplikacji zostanie utworzona w obecnej lokalizacji. Spora część z tych elementów nie będzie przez Ciebie wykorzystywana, ale na chwilę obecną się tym nie przejmuj.
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-**Uwaga!** Instalacja wszystkich zależności możę troszkę trwać dlatego uzbroj się w cierpliwość. Nie muszę chyba wspominać, że dostęp do Internetu jest niezbędny, aby instalować pakiety :)
+You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-Jeśli nie jesteś pewny jaką wersją aplikacji posiadasz to możęsz to sprawdzić za pomocą flagi `-v`.
+## Learn More
 
-```javascript
-node - v;
-npm - v;
-```
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-Po instalacji możemy sprawdzić czy nasze repozytorium posiada poprawne adresy zdalnego repozytorium:
+To learn React, check out the [React documentation](https://reactjs.org/).
 
-```
-git remote -v
-```
+### Code Splitting
 
-Jeśli w konsoli zobaczysz adres zawierający Twój login to oznacza, że możemy bez obaw `push`-ować nasze zmiany na GitHub-a.
+This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-Aby uruchomić lokalny serwer, który będzie automatycznie odświeżał nasza stronę po każdej zmianie jest dostępny pod komendą
+### Analyzing the Bundle Size
 
-```javascript
-npm start
-```
+This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-> **Uwaga!** webpack musi zawsze być uruchomiony jeśli nasza strona ma działać.
+### Making a Progressive Web App
 
-### json-server
+This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-Tą paczkę będziemy isntalować globalnie dlatego warto mieść uprawnienia administratora (sudo na Linux-ie), aby móc to zrobić.
+### Advanced Configuration
 
-W terminalu wpisujemy komendę:
+This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
-```
-npm install -g json-server@0.16
-```
+### Deployment
 
-Po instalacji powinniśmy mieć dostęp do informacji o zainstalowanej wersji
+This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
-```
-json-server -v
-```
+### `npm run build` fails to minify
 
-Teraz w katalogu głównym naszej aplikacji utworzymy sobie katalog `db`, a w nim stworzymy plik `data.json` i wrzucimy testowe dane tj.
-
-```javascript
-{
-    "meetings": [
-        {
-            "firstName": "Jan",
-            "lastName": "Kowalski",
-            "email": "jan@kowalski.not",
-            "date": "2022-01-01",
-            "time": "10:00",
-            "id": 1
-        }
-    ]
-}
-```
-
-Jeśli masz już uruchomienego webpacka (`npm start`), to w kolejnym terminalu (lub wierszu poleceń) powinismy odpalić nasze API tj.
-
-```
-json-server --watch ./db/data.json --port 3005
-```
-
-Ustawiamy inny port niż domyślny tj. 3000 ponieważ na nim działa nasz webpack.
-
-Od teraz możesz korzystać z API pod adresem:
-
-```
-http://localhost:3005/meetings
-```
-
-> **Uwaga!** json-server musi zawsze być uruchomiony jeśli API ma działać.
-
-## Implementacja zadania
-
-W katalogu głównym naszego projektu w katalogu `src` znajdują się nasze źródła.
-
-Utwórzmy tam katalog `components` i tam przechwujmy wszystkie nasze komponenty.
-
-Każdy komponent powinien być umiesczony w osobnym pliku. Trzymajmy się konwencji, że każdy plik zawiera tylko klasę, którą eksportuje.
-
-Plik powinien się nazywać tak jak nazwa klasy (pozostawiąc wielką literę).
-
-Na początek proponuje 3 komponenty
-
-### Calendar
-
-Renderuje pozostałe komponenty oraz zawiera w `state` listę dat do wyświetlenia.
-To ten komponent posiada metody, które odpytują API w celu pobrania lub ustawienia danych.
-
-> Uwaga! Docelowo kod odpowiedzialny za odpytywanie API najlepiej trzymać w osobny pliku np. `calendarProvider.js`. W samym komponencie uruchamiamy odpowiednią metodę, w której obsługujemy odpowiedź z API.
-
-Pamiętaj, aby odpowiednie przygodować fetch:
-
-```javascript
-fetch(this.apiUrl, {
-  method: "POST",
-  body: data,
-  headers: {
-    "Content-Type": "application/json"
-  }
-})
-  .then(resp => {
-    if (resp.ok) {
-      return resp.json();
-    }
-
-    throw new Error("Network error!");
-  })
-  .then(resp => {
-    console.log(resp);
-  });
-```
-
-### CalendarList
-
-Renderuje listę wszystkich aktualnych dat, wyszkorzystując dane przekazane przez `props` z `Calendar`.
-
-### CalendarForm
-
-Renderuje formularz, elementy formularza są kontrolowane przez `state` więc komponent ten możemy nazwać kontrolowanym.
-
-W momencie wysłania formularza (event `submit`, pamietamy o `.preventDefault()`) należy uruchomić odpowiednią metodą przekazaną przez `props`, która zaaktualizuje state oraz wyśle nowe dane do API.
-
-W momencie wysyłania danych powinniśmy sprawdzić czy są one prawidłowe:
-
-- firstName - ciąg znaków zawierający conajmniej 2 znaki
-- lastName - ciąg znaków zawierający conajmniej 2 znaki
-- email - poprawny adres email - najlepiej będzie użyć [wyrażeń regularnych](https://kursjs.pl/kurs/regular/regular.php)
-
-- date - poprawny format: YYYY-mm-dd, również użyjemy wyrażenia regularne
-
-- time - poprawny format: HH:mm, również użyjemy wyrażenia regularne
-
-Jeśli tak to wywołujemy metodą z `props` jeśli nie to wyświetlamy odpowiedni komunikat użytkownikowi.
-
-&nbsp;
-
-> :warning: _**Uwaga!** Pliki zaczynające się od `sandbox...` zostały dodane jedynie w celu wygodnego uruchomienia w [codesandbox.io](https://codesandbox.io/). Nie musisz się nimi przejmować._
-
-&nbsp;
-
-## Dodatkowe zadania
-
-> Nie wykonuj powyższych zadań zanim nie zrobisz podstawowej funkcjonalności
-
-### Zadanie dodatkowe 1
-
-Spróbuj podzielić to zdanie na mniejsze "kawałki" tj. komponenty. Zastanów się, które elementy HTML występują wieloktronie i zastąp je komponentami.
-
-Przykładem może być np. element zawierający informacje o konkretnym spotkaniu. Tutaj moglibyśmy utworzyć `CalendarItem`.
-
-### Zdanie dodatkowe 2
-
-Wykorzystując odpowiednie style (zobacz plik `App.css` jak wygląda i jak jest podpiety do `App.js`) utwórz rozwiązanie, które pozwoli wyświetlać użytkownikowi podpowiedzi tzw. autocomplete - [przykład z jQuery](https://jqueryui.com/autocomplete/).
-
-Powiedzmy, że w momencie, gdy użytkownik wpisuje dane do pola formularza to wykonujemy zapytanie do API, które zwraca nam wszystkie dane, które zaczynają się od podanych znaków.
-
-Jak spojrzymy do [dokumentacji json-server-a](https://github.com/typicode/json-server#operators) to zauważymy, że możemy wykorzystać coś takiego:
-
-```
-/meetings?firstName_like=Ja
-
-```
-
-Powiniśmy w ten sposób wyszukać wszystkie dane, które posiadają imię zaczynające się na `Ja`.
-
-Mając już ten dane (pewnie przechowywane w `state`) powinniśmy je wyswietlić użytkownikowi poniżej inputa, do którego wprowadzał dane (pewnie bez `position: relative` + `absolute` się nie obejdzie).
-
-Po kliknięciu przez użytkownika w element z listy zostanie uzupełniony input jego zawartością.
-
-## Refaktoryzacja
-
-> Dokonaj refaktoryzacji co najmniej po skońcoznej i działającej podstawowej funkcjonalności
-
-Zastanów się jakie elementy Twojego kodu można poprawić. Być może część kodu można napisać sprawniej i czytelniej?
-
-Postaraj się podzielić kod na mniejsze cześci dzięki metodom w klasie, które realizują po 1 konkretnym zadaniu - np. `getDataFromAPI()`, `postDataToAPI(data)`
-
-Zastanów się np. czy przez `props` do `CalendarForm` nie można przekazać pól formularza w taki sposób, aby były one generowane autoamtycznie np.
-
-```javascript
-<CalendarForm
-  fields={[
-    {
-      name: "firstName",
-      label: "Imię",
-      regex: /[\w]+/
-    }
-    // ...
-  ]}
-/>
-```
-
-
-&nbsp;
-
-> ⭐ ***README** to coś więcej niż opis. Poprzez nie **pokazujesz swoje mocne strony** – swoją dokładność, sposób myślenia i podejście do rozwiązywania problemów. Niech Twoje README pokaże, że masz **świetne predyspozycje do rozwoju!***
-> 
-> 🎁 *Zacznij od razu. Skorzystaj z **[szablonu README i wskazówek](https://github.com/devmentor-pl/readme-template)**.* 
-
+This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
