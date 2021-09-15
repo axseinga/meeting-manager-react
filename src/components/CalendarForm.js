@@ -7,7 +7,7 @@ class CalendarForm extends React.Component {
     };
 
     handleChange = (e) => {
-        let fields = this.state.fields;
+        const fields = this.state.fields;
         fields[e.target.name] = e.target.value;
         this.setState({ fields });
     };
@@ -15,18 +15,125 @@ class CalendarForm extends React.Component {
     handleSubmit = (e) => {
         e.preventDefault();
         // funkcja podana przez props ktora uaktualnia state, api i dodaje nowy task do state //
-        this.setState({
-            fields: {
-                firstName: "",
-                lastName: "",
-                email: "",
-                date: "",
-                time: "",
-            },
-        });
+        if (this.handleValidation()) {
+            console.log("form submitted");
+            this.setState({
+                fields: {
+                    firstName: "",
+                    lastName: "",
+                    email: "",
+                    date: "",
+                    time: "",
+                },
+            });
+        } else {
+            console.log("form has errrors");
+        }
     };
 
-    handleValidation = () => {};
+    handleValidation = () => {
+        const fields = this.state.fields;
+        let errors = {};
+
+        if (this.validateFirstName(fields, errors)) {
+            this.setState({ errors: errors });
+            return false;
+        }
+
+        if (this.validateEmail(fields, errors)) {
+            this.setState({ errors: errors });
+            return false;
+        }
+
+        if (this.validateDate(fields, errors)) {
+            this.setState({ errors: errors });
+            return false;
+        }
+
+        if (this.validateTime(fields, errors)) {
+            this.setState({ errors: errors });
+            return false;
+        } else {
+            console.log("form submitted");
+            return true;
+        }
+    };
+
+    validateFirstName = (fields, errors) => {
+        if (!fields["firstName"]) {
+            errors["firstName"] = "First name cannot be empty";
+            return false;
+        }
+        if (fields["firstName"].length < 2) {
+            errors["firstName"] =
+                "First name cannot be shorter than 2 characters";
+            return false;
+        } else {
+            return true;
+        }
+    };
+
+    validateLastName = (fields, errors) => {
+        if (!fields["lastName"]) {
+            errors["lastName"] = "Last name cannot be empty";
+            return false;
+        }
+        if (fields["lastName"].length < 2) {
+            errors["lastName"] =
+                "Last name cannot be shorter than 2 characters";
+            return false;
+        } else {
+            return true;
+        }
+    };
+
+    validateEmail = (fields, errors) => {
+        const emailFormat =
+            /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+
+        if (!fields["email"]) {
+            errors["email"] = "Email cannot be empty";
+            return false;
+        }
+
+        if (!fields["email"].match(emailFormat)) {
+            errors["email"] = "Incorrect email format";
+            return false;
+        } else {
+            return true;
+        }
+    };
+
+    validateDate = (fields, errors) => {
+        const dateFormat = /^\d{4}-\d{2}-\d{2}$/;
+
+        if (!fields["date"]) {
+            errors["date"] = "Date cannot be empty";
+            return false;
+        }
+
+        if (!fields["date"].match(dateFormat)) {
+            errors["date"] = "Incorrect date format";
+            return false;
+        } else {
+            return true;
+        }
+    };
+
+    validateTime = (fields, errors) => {
+        const timeFormat = /^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/;
+        if (!fields["time"]) {
+            errors["time"] = "Time cannot be empty";
+            return false;
+        }
+
+        if (!fields["time"].match(timeFormat)) {
+            errors["time"] = "Incorrect time format";
+            return false;
+        } else {
+            return true;
+        }
+    };
 
     render() {
         return (
