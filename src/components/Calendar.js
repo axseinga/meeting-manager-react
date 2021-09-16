@@ -7,13 +7,13 @@ class Calendar extends React.Component {
     state = { meetings: [] };
     api = new CalendarProvider();
 
-    /*getMeetings = (data) => {
+    getMeetings = (data) => {
         this.setState((state) => {
             return {
                 meetings: [...state.meetings, data],
             };
         });
-    };*/
+    };
 
     addMeeting = (meeting) => {
         this.api
@@ -29,13 +29,13 @@ class Calendar extends React.Component {
             .catch((err) => console.log("error"));
     };
 
-    /*componentDidMount() {
+    componentDidMount() {
         window.addEventListener("load", this.getMeetings(this.props.data));
     }
 
     componentWillUnmount() {
         window.removeEventListener("load", this.getMeetings(this.props.data));
-    }*/
+    }
 
     render() {
         return (

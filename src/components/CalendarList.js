@@ -2,9 +2,11 @@ import React from "react";
 
 class CalendarList extends React.Component {
     render() {
+        const { meetings } = this.props;
+        const arr = meetings.flat();
         return (
             <ul>
-                {this.props.meetings.map((m) => (
+                {arr.map((m) => (
                     <li key={m.id}>
                         <div>
                             <p>
