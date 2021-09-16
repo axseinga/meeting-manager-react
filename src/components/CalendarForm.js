@@ -34,9 +34,83 @@ class CalendarForm extends React.Component {
     handleValidation = () => {
         const fields = this.state.fields;
         let errors = {};
+        let isFormValid = true;
+
+        // name
+
+        if (!fields["firstName"]) {
+            errors["firstName"] = "First name cannot be empty";
+            isFormValid = false;
+        }
+        if (fields["firstName"] && fields["firstName"].length < 2) {
+            errors["firstName"] =
+                "First name cannot be shorter than 2 characters";
+            isFormValid = false;
+        }
+        if (!fields["lastName"]) {
+            errors["lastName"] = "Last name cannot be empty";
+            isFormValid = false;
+        }
+        if (fields["lastName"] && fields["lastName"].length < 2) {
+            errors["lastName"] =
+                "Last name cannot be shorter than 2 characters";
+            isFormValid = false;
+        }
+
+        const emailFormat =
+            /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+
+        if (!fields["email"]) {
+            errors["email"] = "Email cannot be empty";
+            isFormValid = false;
+        }
+
+        if (fields["email"] && !fields["email"].match(emailFormat)) {
+            errors["email"] = "Incorrect email format";
+            isFormValid = false;
+        }
+
+        const dateFormat = /^\d{4}-\d{2}-\d{2}$/;
+
+        if (!fields["date"]) {
+            errors["date"] = "Date cannot be empty";
+            isFormValid = false;
+        }
+
+        if (fields["date"] && !fields["date"].match(dateFormat)) {
+            errors["date"] = "Incorrect date format";
+            isFormValid = false;
+        }
+
+        const timeFormat = /^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/;
+        if (!fields["time"]) {
+            errors["time"] = "Time cannot be empty";
+            isFormValid = false;
+        }
+
+        if (fields["time"] && !fields["time"].match(timeFormat)) {
+            errors["time"] = "Incorrect time format";
+            isFormValid = false;
+        }
+
+        this.setState({ errors: errors });
+        return isFormValid;
+    };
+
+    /*
+
+    handleValidation = () => {
+        const fields = this.state.fields;
+        let errors = {};
 
         if (this.validateFirstName(fields, errors)) {
             this.setState({ errors: errors });
+            return false;
+        }
+        if (this.validateLastName(fields, errors)) {
+            console.log(errors);
+            this.setState({ errors: errors });
+            console.log(errors, this.state.errors);
             return false;
         }
 
@@ -54,7 +128,6 @@ class CalendarForm extends React.Component {
             this.setState({ errors: errors });
             return false;
         } else {
-            console.log("form submitted");
             return true;
         }
     };
@@ -135,6 +208,8 @@ class CalendarForm extends React.Component {
         }
     };
 
+    */
+
     render() {
         return (
             <form
@@ -147,6 +222,11 @@ class CalendarForm extends React.Component {
             >
                 <div style={{ display: "flex", flexDirection: "column" }}>
                     <label htmlFor="firstName">First Name</label>
+                    {this.state.errors["firstName"] && (
+                        <span style={{ color: "red" }}>
+                            {this.state.errors["firstName"]}
+                        </span>
+                    )}
                     <input
                         type="text"
                         name="firstName"
@@ -155,6 +235,11 @@ class CalendarForm extends React.Component {
                         onChange={this.handleChange}
                     ></input>
                     <label htmlFor="lastName">Last Name</label>
+                    {this.state.errors["lastName"] && (
+                        <span style={{ color: "red" }}>
+                            {this.state.errors["lastName"]}
+                        </span>
+                    )}
                     <input
                         type="text"
                         name="lastName"
@@ -163,6 +248,11 @@ class CalendarForm extends React.Component {
                         onChange={this.handleChange}
                     ></input>
                     <label htmlFor="email">Email</label>
+                    {this.state.errors["email"] && (
+                        <span style={{ color: "red" }}>
+                            {this.state.errors["email"]}
+                        </span>
+                    )}
                     <input
                         type="text"
                         name="email"
@@ -171,6 +261,11 @@ class CalendarForm extends React.Component {
                         onChange={this.handleChange}
                     ></input>
                     <label htmlFor="date">Date</label>
+                    {this.state.errors["date"] && (
+                        <span style={{ color: "red" }}>
+                            {this.state.errors["date"]}
+                        </span>
+                    )}
                     <input
                         type="text"
                         name="date"
@@ -179,6 +274,11 @@ class CalendarForm extends React.Component {
                         onChange={this.handleChange}
                     ></input>
                     <label htmlFor="time">Time</label>
+                    {this.state.errors["time"] && (
+                        <span style={{ color: "red" }}>
+                            {this.state.errors["time"]}
+                        </span>
+                    )}
                     <input
                         type="text"
                         name="time"

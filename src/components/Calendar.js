@@ -1,9 +1,9 @@
 import React from "react";
-import CalendarForm from './CalendarForm'
+import CalendarForm from "./CalendarForm";
 
 class Calendar extends React.Component {
     render() {
-        return (<CalendarForm/>);
+        return <CalendarForm />;
     }
 }
 
