@@ -14,9 +14,11 @@ class CalendarForm extends React.Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        // funkcja podana przez props ktora uaktualnia state, api i dodaje nowy task do state //
         if (this.handleValidation()) {
             console.log("form submitted");
+            // funkcja podana przez props ktora uaktualnia state, api i dodaje nowy task do state //
+            const newMeeting = { ...this.state.fields };
+            this.props.addMeeting(newMeeting);
             this.setState({
                 fields: {
                     firstName: "",
