@@ -1,3 +1,20 @@
 {
-    "meetings": []
+  "meetings": [
+    {
+      "firstName": "Agnieszka",
+      "lastName": "Urbanowicz",
+      "email": "dejannaa@gmail.com",
+      "date": "1991-21-08",
+      "time": "23:01",
+      "id": 1
+    },
+    {
+      "firstName": "Agnieszka",
+      "lastName": "Urbanowicz",
+      "email": "dejannaa@gmail.com",
+      "date": "1991-21-08",
+      "time": "23:01",
+      "id": 2
+    }
+  ]
 }

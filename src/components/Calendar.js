@@ -1,5 +1,6 @@
 import React from "react";
 import CalendarProvider from "./CalendarProvider";
+import CalendarList from "./CalendarList";
 import CalendarForm from "./CalendarForm";
 
 class Calendar extends React.Component {
@@ -21,7 +22,12 @@ class Calendar extends React.Component {
     };
 
     render() {
-        return <CalendarForm addMeeting={this.addMeeting} />;
+        return (
+            <div>
+                <CalendarList meetings={this.state.meetings} />
+                <CalendarForm addMeeting={this.addMeeting} />
+            </div>
+        );
     }
 }
 
