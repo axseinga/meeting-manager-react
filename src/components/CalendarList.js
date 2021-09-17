@@ -1,4 +1,5 @@
 import React from "react";
+import CalendarItem from "./CalendarItem";
 
 class CalendarList extends React.Component {
     render() {

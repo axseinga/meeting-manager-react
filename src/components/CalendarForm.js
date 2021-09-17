@@ -42,7 +42,6 @@ class CalendarForm extends React.Component {
             isFormValid = false;
         }
         if (this.validateLastName(fields, errors)) {
-            console.log(errors);
             this.setState({ errors: errors });
             isFormValid = false;
         }
@@ -68,28 +67,28 @@ class CalendarForm extends React.Component {
     validateFirstName = (fields, errors) => {
         if (!fields["firstName"]) {
             errors["firstName"] = "First name cannot be empty";
-            return false;
+            return true;
         }
         if (fields["firstName"].length < 2) {
             errors["firstName"] =
                 "First name cannot be shorter than 2 characters";
-            return false;
-        } else {
             return true;
+        } else {
+            return false;
         }
     };
 
     validateLastName = (fields, errors) => {
         if (!fields["lastName"]) {
             errors["lastName"] = "Last name cannot be empty";
-            return false;
+            return true;
         }
         if (fields["lastName"].length < 2) {
             errors["lastName"] =
                 "Last name cannot be shorter than 2 characters";
-            return false;
-        } else {
             return true;
+        } else {
+            return false;
         }
     };
 
@@ -99,14 +98,14 @@ class CalendarForm extends React.Component {
 
         if (!fields["email"]) {
             errors["email"] = "Email cannot be empty";
-            return false;
+            return true;
         }
 
         if (!fields["email"].match(emailFormat)) {
             errors["email"] = "Incorrect email format";
-            return false;
-        } else {
             return true;
+        } else {
+            return false;
         }
     };
 
@@ -115,14 +114,14 @@ class CalendarForm extends React.Component {
 
         if (!fields["date"]) {
             errors["date"] = "Date cannot be empty";
-            return false;
+            return true;
         }
 
         if (!fields["date"].match(dateFormat)) {
             errors["date"] = "Incorrect date format";
-            return false;
-        } else {
             return true;
+        } else {
+            return false;
         }
     };
 
@@ -130,14 +129,14 @@ class CalendarForm extends React.Component {
         const timeFormat = /^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/;
         if (!fields["time"]) {
             errors["time"] = "Time cannot be empty";
-            return false;
+            return true;
         }
 
         if (!fields["time"].match(timeFormat)) {
             errors["time"] = "Incorrect time format";
-            return false;
-        } else {
             return true;
+        } else {
+            return false;
         }
     };
 
