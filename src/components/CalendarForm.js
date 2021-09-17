@@ -16,7 +16,6 @@ class CalendarForm extends React.Component {
         e.preventDefault();
         if (this.handleValidation()) {
             console.log("form submitted");
-            // funkcja podana przez props ktora uaktualnia state, api i dodaje nowy task do state //
             const newMeeting = { ...this.state.fields };
             this.props.addMeeting(newMeeting);
             this.setState({
@@ -38,99 +37,31 @@ class CalendarForm extends React.Component {
         let errors = {};
         let isFormValid = true;
 
-        // name
-
-        if (!fields["firstName"]) {
-            errors["firstName"] = "First name cannot be empty";
-            isFormValid = false;
-        }
-        if (fields["firstName"] && fields["firstName"].length < 2) {
-            errors["firstName"] =
-                "First name cannot be shorter than 2 characters";
-            isFormValid = false;
-        }
-        if (!fields["lastName"]) {
-            errors["lastName"] = "Last name cannot be empty";
-            isFormValid = false;
-        }
-        if (fields["lastName"] && fields["lastName"].length < 2) {
-            errors["lastName"] =
-                "Last name cannot be shorter than 2 characters";
-            isFormValid = false;
-        }
-
-        const emailFormat =
-            /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-
-        if (!fields["email"]) {
-            errors["email"] = "Email cannot be empty";
-            isFormValid = false;
-        }
-
-        if (fields["email"] && !fields["email"].match(emailFormat)) {
-            errors["email"] = "Incorrect email format";
-            isFormValid = false;
-        }
-
-        const dateFormat = /^\d{4}-\d{2}-\d{2}$/;
-
-        if (!fields["date"]) {
-            errors["date"] = "Date cannot be empty";
-            isFormValid = false;
-        }
-
-        if (fields["date"] && !fields["date"].match(dateFormat)) {
-            errors["date"] = "Incorrect date format";
-            isFormValid = false;
-        }
-
-        const timeFormat = /^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/;
-        if (!fields["time"]) {
-            errors["time"] = "Time cannot be empty";
-            isFormValid = false;
-        }
-
-        if (fields["time"] && !fields["time"].match(timeFormat)) {
-            errors["time"] = "Incorrect time format";
-            isFormValid = false;
-        }
-
-        this.setState({ errors: errors });
-        return isFormValid;
-    };
-
-    /*
-
-    handleValidation = () => {
-        const fields = this.state.fields;
-        let errors = {};
-
         if (this.validateFirstName(fields, errors)) {
             this.setState({ errors: errors });
-            return false;
+            isFormValid = false;
         }
         if (this.validateLastName(fields, errors)) {
             console.log(errors);
             this.setState({ errors: errors });
-            console.log(errors, this.state.errors);
-            return false;
+            isFormValid = false;
         }
 
         if (this.validateEmail(fields, errors)) {
             this.setState({ errors: errors });
-            return false;
+            isFormValid = false;
         }
 
         if (this.validateDate(fields, errors)) {
             this.setState({ errors: errors });
-            return false;
+            isFormValid = false;
         }
 
         if (this.validateTime(fields, errors)) {
             this.setState({ errors: errors });
-            return false;
+            isFormValid = false;
         } else {
-            return true;
+            return isFormValid;
         }
     };
 
@@ -209,8 +140,6 @@ class CalendarForm extends React.Component {
             return true;
         }
     };
-
-    */
 
     render() {
         return (
