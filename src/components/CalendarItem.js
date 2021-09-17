@@ -2,9 +2,9 @@ import React from "react";
 
 class CalendarItem extends React.Component {
     render() {
-        const { id, firstName, lastName, email, date, time } = this.props;
+        const { firstName, lastName, email, date, time } = this.props;
         return (
-            <li key={id}>
+            <li>
                 <div>
                     <p>
                         {firstName} {lastName}

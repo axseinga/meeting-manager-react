@@ -8,7 +8,23 @@ class CalendarList extends React.Component {
         return (
             <ul>
                 {arr.map((m) => (
-                    <li key={m.id}>
+                    <CalendarItem
+                        key={m.id}
+                        firstName={m.firstName}
+                        lastName={m.lastName}
+                        email={m.email}
+                        date={m.date}
+                        time={m.time}
+                    />
+                ))}
+            </ul>
+        );
+    }
+}
+
+export default CalendarList;
+
+/* <li key={m.id}>
                         <div>
                             <p>
                                 {m.firstName} {m.lastName}
@@ -18,11 +34,4 @@ class CalendarList extends React.Component {
                                 {m.date} / {m.time}
                             </p>
                         </div>
-                    </li>
-                ))}
-            </ul>
-        );
-    }
-}
-
-export default CalendarList;
+                    </li> */
