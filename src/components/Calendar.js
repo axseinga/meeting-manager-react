@@ -30,11 +30,7 @@ class Calendar extends React.Component {
     };
 
     componentDidMount() {
-        window.addEventListener("load", this.getMeetings(this.props.data));
-    }
-
-    componentWillUnmount() {
-        window.removeEventListener("load", this.getMeetings(this.props.data));
+        this.getMeetings(this.props.data);
     }
 
     render() {
