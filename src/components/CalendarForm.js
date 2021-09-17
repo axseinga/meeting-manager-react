@@ -6,6 +6,7 @@ import {
     validateDate,
     validateTime,
 } from "./helpers";
+import "./CalendarForm.css";
 
 class CalendarForm extends React.Component {
     state = {
@@ -73,83 +74,101 @@ class CalendarForm extends React.Component {
 
     render() {
         return (
-            <form
-                style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    width: "500px",
-                }}
-                onSubmit={this.handleSubmit}
-            >
-                <div style={{ display: "flex", flexDirection: "column" }}>
-                    <label htmlFor="firstName">First Name</label>
-                    {this.state.errors["firstName"] && (
-                        <span style={{ color: "red" }}>
-                            {this.state.errors["firstName"]}
-                        </span>
-                    )}
-                    <input
-                        type="text"
-                        name="firstName"
-                        value={this.state.fields["firstName"]}
-                        id="firstName"
-                        onChange={this.handleChange}
-                    ></input>
-                    <label htmlFor="lastName">Last Name</label>
-                    {this.state.errors["lastName"] && (
-                        <span style={{ color: "red" }}>
-                            {this.state.errors["lastName"]}
-                        </span>
-                    )}
-                    <input
-                        type="text"
-                        name="lastName"
-                        value={this.state.fields["lastName"]}
-                        id="lastName"
-                        onChange={this.handleChange}
-                    ></input>
-                    <label htmlFor="email">Email</label>
-                    {this.state.errors["email"] && (
-                        <span style={{ color: "red" }}>
-                            {this.state.errors["email"]}
-                        </span>
-                    )}
-                    <input
-                        type="text"
-                        name="email"
-                        value={this.state.fields["email"]}
-                        id="email"
-                        onChange={this.handleChange}
-                    ></input>
-                    <label htmlFor="date">Date</label>
-                    {this.state.errors["date"] && (
-                        <span style={{ color: "red" }}>
-                            {this.state.errors["date"]}
-                        </span>
-                    )}
-                    <input
-                        type="text"
-                        name="date"
-                        value={this.state.fields["date"]}
-                        id="date"
-                        onChange={this.handleChange}
-                    ></input>
-                    <label htmlFor="time">Time</label>
-                    {this.state.errors["time"] && (
-                        <span style={{ color: "red" }}>
-                            {this.state.errors["time"]}
-                        </span>
-                    )}
-                    <input
-                        type="text"
-                        name="time"
-                        value={this.state.fields["time"]}
-                        id="time"
-                        onChange={this.handleChange}
-                    ></input>
-                </div>
-                <button>Submit</button>
-            </form>
+            <div className="CalendarForm">
+                <form
+                    className="CalendarForm-form"
+                    onSubmit={this.handleSubmit}
+                >
+                    <div className="CalendarForm-inputs">
+                        <div className="CalendarForm-input-container">
+                            <div className="CalendarForm-label-container">
+                                <label htmlFor="firstName">First Name</label>
+                                {this.state.errors["firstName"] && (
+                                    <span className="CalendarForm-warning">
+                                        {this.state.errors["firstName"]}
+                                    </span>
+                                )}
+                            </div>
+                            <input
+                                type="text"
+                                name="firstName"
+                                value={this.state.fields["firstName"]}
+                                id="firstName"
+                                onChange={this.handleChange}
+                            ></input>
+                        </div>
+                        <div className="CalendarForm-input-container">
+                            <div className="CalendarForm-label-container">
+                                <label htmlFor="lastName">Last Name</label>
+                                {this.state.errors["lastName"] && (
+                                    <span className="CalendarForm-warning">
+                                        {this.state.errors["lastName"]}
+                                    </span>
+                                )}
+                            </div>
+                            <input
+                                type="text"
+                                name="lastName"
+                                value={this.state.fields["lastName"]}
+                                id="lastName"
+                                onChange={this.handleChange}
+                            ></input>
+                        </div>
+                        <div className="CalendarForm-input-container">
+                            <div className="CalendarForm-label-container">
+                                <label htmlFor="email">Email</label>
+                                {this.state.errors["email"] && (
+                                    <span className="CalendarForm-warning">
+                                        {this.state.errors["email"]}
+                                    </span>
+                                )}
+                            </div>
+                            <input
+                                type="text"
+                                name="email"
+                                value={this.state.fields["email"]}
+                                id="email"
+                                onChange={this.handleChange}
+                            ></input>
+                        </div>
+                        <div className="CalendarForm-input-container">
+                            <div className="CalendarForm-label-container">
+                                <label htmlFor="date">Date</label>
+                                {this.state.errors["date"] && (
+                                    <span className="CalendarForm-warning">
+                                        {this.state.errors["date"]}
+                                    </span>
+                                )}
+                            </div>
+                            <input
+                                type="text"
+                                name="date"
+                                value={this.state.fields["date"]}
+                                id="date"
+                                onChange={this.handleChange}
+                            ></input>
+                        </div>
+                        <div className="CalendarForm-input-container">
+                            <div className="CalendarForm-label-container">
+                                <label htmlFor="time">Time</label>
+                                {this.state.errors["time"] && (
+                                    <span className="CalendarForm-warning">
+                                        {this.state.errors["time"]}
+                                    </span>
+                                )}
+                            </div>
+                            <input
+                                type="text"
+                                name="time"
+                                value={this.state.fields["time"]}
+                                id="time"
+                                onChange={this.handleChange}
+                            ></input>
+                        </div>
+                    </div>
+                    <button className="CalendarForm-btn">Submit</button>
+                </form>
+            </div>
         );
     }
 }

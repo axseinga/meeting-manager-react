@@ -1,10 +1,10 @@
 const validateFirstName = (fields, errors) => {
     if (!fields["firstName"]) {
-        errors["firstName"] = "First name cannot be empty";
+        errors["firstName"] = "cannot be empty";
         return true;
     }
     if (fields["firstName"].length < 2) {
-        errors["firstName"] = "First name cannot be shorter than 2 characters";
+        errors["firstName"] = "cannot be shorter than 2 characters";
         return true;
     } else {
         return false;
@@ -13,11 +13,11 @@ const validateFirstName = (fields, errors) => {
 
 const validateLastName = (fields, errors) => {
     if (!fields["lastName"]) {
-        errors["lastName"] = "Last name cannot be empty";
+        errors["lastName"] = "cannot be empty";
         return true;
     }
     if (fields["lastName"].length < 2) {
-        errors["lastName"] = "Last name cannot be shorter than 2 characters";
+        errors["lastName"] = "cannot be shorter than 2 characters";
         return true;
     } else {
         return false;
@@ -29,7 +29,7 @@ const validateEmail = (fields, errors) => {
         /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
     if (!fields["email"]) {
-        errors["email"] = "Email cannot be empty";
+        errors["email"] = "cannot be empty";
         return true;
     }
 
@@ -45,7 +45,7 @@ const validateDate = (fields, errors) => {
     const dateFormat = /^\d{4}-\d{2}-\d{2}$/;
 
     if (!fields["date"]) {
-        errors["date"] = "Date cannot be empty";
+        errors["date"] = "cannot be empty";
         return true;
     }
 
@@ -60,7 +60,7 @@ const validateDate = (fields, errors) => {
 const validateTime = (fields, errors) => {
     const timeFormat = /^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/;
     if (!fields["time"]) {
-        errors["time"] = "Time cannot be empty";
+        errors["time"] = "cannot be empty";
         return true;
     }
 

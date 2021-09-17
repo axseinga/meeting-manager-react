@@ -1,0 +1,16 @@
+.CalendarItem {
+    text-align: center;
+}
+
+.CalendarItem-border {
+    border: 1px solid #fcafaf;
+}
+
+.CalendarItem-legend {
+    color: #da4b4b;
+}
+
+.CalendarItem-border span {
+    color: #da4b4b;
+    font-weight: 700;
+}

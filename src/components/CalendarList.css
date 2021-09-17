@@ -1,0 +1,19 @@
+.CalendarList {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 5rem;
+    align-items: center;
+    height: 100%;
+    width: 65%;
+    gap: 5px;
+    background-color: #ffffff;
+}
+
+.CalendarList-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 4rem;
+    list-style: none;
+    padding: 2rem;
+}

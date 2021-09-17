@@ -1,3 +1,36 @@
 {
-    "meetings": []
+  "meetings": [
+    {
+      "firstName": "Winnie-the-Pooh",
+      "lastName": "Friend",
+      "email": "winnie-the-pooh@woods.com",
+      "date": "2021-10-08",
+      "time": "10:00",
+      "id": 1
+    },
+    {
+      "firstName": "Tigger",
+      "lastName": "Friend",
+      "email": "tigger-tigger@woods.com",
+      "date": "2021-11-03",
+      "time": "15:00",
+      "id": 2
+    },
+    {
+      "firstName": "Piglet",
+      "lastName": "Friend",
+      "email": "tiny-piglet@woods.com",
+      "date": "2021-12-24",
+      "time": "18:00",
+      "id": 3
+    },
+    {
+      "firstName": "Eeyore",
+      "lastName": "Friend",
+      "email": "sad-eeyore@woods.com",
+      "date": "2021-11-12",
+      "time": "12:00",
+      "id": 4
+    }
+  ]
 }
