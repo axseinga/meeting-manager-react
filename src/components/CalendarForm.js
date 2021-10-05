@@ -109,21 +109,21 @@ class CalendarForm extends React.Component {
         if (this.state.filteredSuggestions.length) {
             suggestionsListComponent = (
                 <ul className="suggestions">
-                    {this.state.filteredSuggestions.map((suggestion, index) => {
-                        console.log(suggestion);
-                        console.log(suggestion[0]);
-                        console.log(suggestion[1]);
-                        let className;
+                    {this.state.filteredSuggestions[0].map(
+                        (suggestion, index) => {
+                            console.log(suggestion);
+                            let className;
 
-                        if (index === this.state.activeSuggestion) {
-                            className = "suggestion-active";
+                            if (index === this.state.activeSuggestion) {
+                                className = "suggestion-active";
+                            }
+                            return (
+                                <li className={className} key={suggestion}>
+                                    {suggestion}
+                                </li>
+                            );
                         }
-                        return (
-                            <li className={className} key={suggestion}>
-                                {suggestion}
-                            </li>
-                        );
-                    })}
+                    )}
                 </ul>
             );
         }

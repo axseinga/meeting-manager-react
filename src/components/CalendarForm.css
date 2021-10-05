@@ -59,11 +59,6 @@
     margin-left: 5px;
 }
 
-.no-suggestions {
-    color: white;
-    padding: 0.5rem;
-}
-
 .suggestions {
     border: 1px solid grey;
     font-size: 0.7rem;
@@ -80,7 +75,7 @@
     z-index: 999;
 }
 
-.suggestions li {
+.suggestion li {
     padding: 0.5rem;
 }
 
