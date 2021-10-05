@@ -7,17 +7,49 @@ import {
     validateTime,
 } from "./helpers";
 import "./CalendarForm.css";
+import CalendarProvider from "./CalendarProvider";
 
 class CalendarForm extends React.Component {
     state = {
         fields: { firstName: "", lastName: "", email: "", date: "", time: "" },
         errors: {},
+        filteredSuggestions: [],
+        activeSuggestionIndex: 0,
+    };
+    api = new CalendarProvider();
+
+    getSuggestions = (e) => {
+        this.api
+            .get(e.target.id, e.target.value)
+            .then((data) => {
+                const arr = [];
+                data.forEach((d) => {
+                    const item = [d[e.target.id]];
+                    arr.push(item);
+                });
+                console.log(arr);
+                this.setState((state) => {
+                    return {
+                        filteredSuggestions: [arr],
+                    };
+                });
+            })
+            .catch((err) => console.log("error"));
     };
 
     handleChange = (e) => {
         const fields = this.state.fields;
         fields[e.target.name] = e.target.value;
         this.setState({ fields });
+        if (e.target.value !== "") {
+            this.getSuggestions(e);
+        } else {
+            this.setState((state) => {
+                return {
+                    filteredSuggestions: [],
+                };
+            });
+        }
     };
 
     handleSubmit = (e) => {
@@ -73,6 +105,28 @@ class CalendarForm extends React.Component {
     };
 
     render() {
+        let suggestionsListComponent;
+        if (this.state.filteredSuggestions.length) {
+            suggestionsListComponent = (
+                <ul className="suggestions">
+                    {this.state.filteredSuggestions.map((suggestion, index) => {
+                        console.log(suggestion);
+                        console.log(suggestion[0]);
+                        console.log(suggestion[1]);
+                        let className;
+
+                        if (index === this.state.activeSuggestion) {
+                            className = "suggestion-active";
+                        }
+                        return (
+                            <li className={className} key={suggestion}>
+                                {suggestion}
+                            </li>
+                        );
+                    })}
+                </ul>
+            );
+        }
         return (
             <div className="CalendarForm">
                 <form
@@ -96,6 +150,7 @@ class CalendarForm extends React.Component {
                                 id="firstName"
                                 onChange={this.handleChange}
                             ></input>
+                            {suggestionsListComponent}
                         </div>
                         <div className="CalendarForm-input-container">
                             <div className="CalendarForm-label-container">
@@ -113,6 +168,7 @@ class CalendarForm extends React.Component {
                                 id="lastName"
                                 onChange={this.handleChange}
                             ></input>
+                            {suggestionsListComponent}
                         </div>
                         <div className="CalendarForm-input-container">
                             <div className="CalendarForm-label-container">
@@ -130,6 +186,7 @@ class CalendarForm extends React.Component {
                                 id="email"
                                 onChange={this.handleChange}
                             ></input>
+                            {suggestionsListComponent}
                         </div>
                         <div className="CalendarForm-input-container">
                             <div className="CalendarForm-label-container">
@@ -147,6 +204,7 @@ class CalendarForm extends React.Component {
                                 id="date"
                                 onChange={this.handleChange}
                             ></input>
+                            {suggestionsListComponent}
                         </div>
                         <div className="CalendarForm-input-container">
                             <div className="CalendarForm-label-container">
@@ -164,6 +222,7 @@ class CalendarForm extends React.Component {
                                 id="time"
                                 onChange={this.handleChange}
                             ></input>
+                            {suggestionsListComponent}
                         </div>
                     </div>
                     <button className="CalendarForm-btn">Submit</button>

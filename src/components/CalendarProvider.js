@@ -1,6 +1,24 @@
 import React from "react";
 
 class CalendarProvider {
+    get(field, input) {
+        const url = `http://localhost:3005/meetings?${field}_like=${input}`;
+
+        const promise = fetch(url);
+
+        return promise
+            .then((resp) => {
+                if (resp.ok) {
+                    return resp.json();
+                }
+                return Promise.reject(resp);
+            })
+            .then((data) => {
+                return data;
+            })
+            .catch((err) => console.log(err));
+    }
+
     add(task) {
         const options = {
             method: "POST",
