@@ -15,6 +15,8 @@ class CalendarForm extends React.Component {
         errors: {},
         filteredSuggestions: [],
         activeSuggestionIndex: 0,
+        showSuggestions: false,
+        activeField: null,
     };
     api = new CalendarProvider();
 
@@ -42,11 +44,15 @@ class CalendarForm extends React.Component {
         fields[e.target.name] = e.target.value;
         this.setState({ fields });
         if (e.target.value !== "") {
+            this.setState({
+                showSuggestions: true,
+            });
             this.getSuggestions(e);
         } else {
             this.setState((state) => {
                 return {
                     filteredSuggestions: [],
+                    showSuggestions: false,
                 };
             });
         }
@@ -104,26 +110,50 @@ class CalendarForm extends React.Component {
         }
     };
 
+    handleActiveField = (fieldName) => {
+        this.setState({
+            activeField: fieldName,
+        });
+    };
+
+    handleDeactiveField = () => {
+        this.setState({
+            activeField: null,
+        });
+    };
+
+    handleAutoComplete = (e) => {
+        console.log("autocomplete clicked");
+        //const fields = this.state.fields;
+        //this.setState({
+        //    fields: {
+        //        firstName: e.target.innerText,
+        //    },
+        //     showSuggestions: false,
+        //    filteredSuggestions: [],
+        //});
+    };
+
     render() {
         let suggestionsListComponent;
-        if (this.state.filteredSuggestions.length) {
+        if (
+            this.state.filteredSuggestions.length &&
+            this.state.showSuggestions === true
+        ) {
             suggestionsListComponent = (
                 <ul className="suggestions">
-                    {this.state.filteredSuggestions[0].map(
-                        (suggestion, index) => {
-                            console.log(suggestion);
-                            let className;
-
-                            if (index === this.state.activeSuggestion) {
-                                className = "suggestion-active";
-                            }
-                            return (
-                                <li className={className} key={suggestion}>
-                                    {suggestion}
-                                </li>
-                            );
-                        }
-                    )}
+                    {this.state.filteredSuggestions[0].map((suggestion) => {
+                        let className;
+                        return (
+                            <li
+                                className={className}
+                                key={suggestion}
+                                onClick={this.handleAutoComplete}
+                            >
+                                {suggestion}
+                            </li>
+                        );
+                    })}
                 </ul>
             );
         }
@@ -149,8 +179,13 @@ class CalendarForm extends React.Component {
                                 value={this.state.fields["firstName"]}
                                 id="firstName"
                                 onChange={this.handleChange}
+                                onFocus={() =>
+                                    this.handleActiveField("firstName")
+                                }
+                                onBlur={this.handleDeactiveField}
                             ></input>
-                            {suggestionsListComponent}
+                            {this.state.activeField === "firstName" &&
+                                suggestionsListComponent}
                         </div>
                         <div className="CalendarForm-input-container">
                             <div className="CalendarForm-label-container">
@@ -167,8 +202,13 @@ class CalendarForm extends React.Component {
                                 value={this.state.fields["lastName"]}
                                 id="lastName"
                                 onChange={this.handleChange}
+                                onFocus={() =>
+                                    this.handleActiveField("lastName")
+                                }
+                                onBlur={this.handleDeactiveField}
                             ></input>
-                            {suggestionsListComponent}
+                            {this.state.activeField === "lastName" &&
+                                suggestionsListComponent}
                         </div>
                         <div className="CalendarForm-input-container">
                             <div className="CalendarForm-label-container">
@@ -185,8 +225,11 @@ class CalendarForm extends React.Component {
                                 value={this.state.fields["email"]}
                                 id="email"
                                 onChange={this.handleChange}
+                                onFocus={() => this.handleActiveField("email")}
+                                onBlur={this.handleDeactiveField}
                             ></input>
-                            {suggestionsListComponent}
+                            {this.state.activeField === "email" &&
+                                suggestionsListComponent}
                         </div>
                         <div className="CalendarForm-input-container">
                             <div className="CalendarForm-label-container">
@@ -203,8 +246,11 @@ class CalendarForm extends React.Component {
                                 value={this.state.fields["date"]}
                                 id="date"
                                 onChange={this.handleChange}
+                                onFocus={() => this.handleActiveField("date")}
+                                onBlur={this.handleDeactiveField}
                             ></input>
-                            {suggestionsListComponent}
+                            {this.state.activeField === "date" &&
+                                suggestionsListComponent}
                         </div>
                         <div className="CalendarForm-input-container">
                             <div className="CalendarForm-label-container">
@@ -221,8 +267,11 @@ class CalendarForm extends React.Component {
                                 value={this.state.fields["time"]}
                                 id="time"
                                 onChange={this.handleChange}
+                                onFocus={() => this.handleActiveField("time")}
+                                onBlur={this.handleDeactiveField}
                             ></input>
-                            {suggestionsListComponent}
+                            {this.state.activeField === "time" &&
+                                suggestionsListComponent}
                         </div>
                     </div>
                     <button className="CalendarForm-btn">Submit</button>
