@@ -117,21 +117,23 @@ class CalendarForm extends React.Component {
     };
 
     handleDeactiveField = () => {
-        this.setState({
-            activeField: null,
-        });
+        setTimeout(() => {
+            this.setState({
+                activeField: null,
+            });
+        }, 100);
     };
 
     handleAutoComplete = (e) => {
-        console.log("autocomplete clicked");
-        //const fields = this.state.fields;
-        //this.setState({
-        //    fields: {
-        //        firstName: e.target.innerText,
-        //    },
-        //     showSuggestions: false,
-        //    filteredSuggestions: [],
-        //});
+        const { fields, activeField } = this.state;
+        this.setState({
+            fields: {
+                ...fields,
+                [activeField]: e.target.innerText,
+            },
+            showSuggestions: false,
+            filteredSuggestions: [],
+        });
     };
 
     render() {
