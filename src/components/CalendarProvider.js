@@ -1,10 +1,8 @@
 import React from "react";
 
 class CalendarProvider {
-    get(field, input) {
-        const url = `http://localhost:3005/meetings?${field}_like=${input}`;
-
-        const promise = fetch(url);
+    returnPromise(url, options) {
+        const promise = fetch(url, options);
 
         return promise
             .then((resp) => {
@@ -19,6 +17,12 @@ class CalendarProvider {
             .catch((err) => console.log(err));
     }
 
+    get(field, input) {
+        const url = `http://localhost:3005/meetings?${field}_like=${input}`;
+
+        return this.returnPromise(url);
+    }
+
     add(task) {
         const options = {
             method: "POST",
@@ -27,19 +31,7 @@ class CalendarProvider {
         };
         const url = "http://localhost:3005/meetings";
 
-        const promise = fetch(url, options);
-
-        return promise
-            .then((resp) => {
-                if (resp.ok) {
-                    return resp.json();
-                }
-                return Promise.reject(resp);
-            })
-            .then((data) => {
-                return data;
-            })
-            .catch((err) => console.log(err));
+        return this.returnPromise(url, options);
     }
 }
 
