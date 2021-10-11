@@ -8,6 +8,7 @@ import {
 } from "./helpers";
 import "./CalendarForm.css";
 import CalendarProvider from "./CalendarProvider";
+import CalendarInput from "./CalendarInput";
 
 class CalendarForm extends React.Component {
     state = {

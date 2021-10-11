@@ -2,22 +2,37 @@ import React from "react";
 
 class CalendarInput extends React.Component {
     render() {
+        const [
+            name,
+            label,
+            errors,
+            handleChange,
+            handleActiveField,
+            handleDeactiveField,
+            activeField,
+            suggestionsListComponent,
+        ] = this.props;
         return (
             <div className="CalendarForm-input-container">
                 <div className="CalendarForm-label-container">
-                    <label htmlFor={this.props.name}>{this.props.label}</label>
-                    {this.props.error && (
+                    <label htmlFor={name}>{label}</label>
+                    {{ errors }[{ name }] && (
                         <span className="CalendarForm-warning">
-                            {this.props.error}
+                            {{ errors }[{ name }]}
                         </span>
                     )}
                 </div>
                 <input
                     type="text"
-                    name={this.props.name}
-                    id={this.props.name}
+                    name="firstName"
+                    value={this.state.fields["firstName"]}
+                    id="firstName"
                     onChange={this.handleChange}
+                    onFocus={() => this.handleActiveField("firstName")}
+                    onBlur={this.handleDeactiveField}
                 ></input>
+                {this.state.activeField === "firstName" &&
+                    suggestionsListComponent}
             </div>
         );
     }
