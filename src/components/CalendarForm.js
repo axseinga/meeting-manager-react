@@ -83,26 +83,26 @@ class CalendarForm extends React.Component {
         let errors = {};
         let isFormValid = true;
 
-        if (validateFirstName(fields, errors)) {
+        if (!validateFirstName(fields, errors)) {
             this.setState({ errors: errors });
             isFormValid = false;
         }
-        if (validateLastName(fields, errors)) {
-            this.setState({ errors: errors });
-            isFormValid = false;
-        }
-
-        if (validateEmail(fields, errors)) {
+        if (!validateLastName(fields, errors)) {
             this.setState({ errors: errors });
             isFormValid = false;
         }
 
-        if (validateDate(fields, errors)) {
+        if (!validateEmail(fields, errors)) {
             this.setState({ errors: errors });
             isFormValid = false;
         }
 
-        if (validateTime(fields, errors)) {
+        if (!validateDate(fields, errors)) {
+            this.setState({ errors: errors });
+            isFormValid = false;
+        }
+
+        if (!validateTime(fields, errors)) {
             this.setState({ errors: errors });
             isFormValid = false;
         } else {
