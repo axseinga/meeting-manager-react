@@ -1,70 +1,86 @@
-# Getting Started with Create React App
+# devmentor.pl - React: Composition / Calendar
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Table of contents
 
-## Available Scripts
+-   [Overview](#overview)
+    -   [The challenge](#the-challenge)
+    -   [Screenshot](#screenshot)
+    -   [How to run the project](#how-to-run-the-project)
+-   [My process](#my-process)
+    -   [Built with](#built-with)
+    -   [What I learned](#what-i-learned)
+    -   [Continued development](#continued-development)
+    -   [Useful resources](#useful-resources)
+-   [Author](#author)
+-   [Acknowledgments](#acknowledgments)
 
-In the project directory, you can run:
+## Overview
 
-### `npm start`
+### The challenge
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+The goal was to create React Calendar with local API as a database to manage meetings. The calendar had to be rendered from the database and contain a form to submit new meetings (with specified validation of every field). Creating a autocomplete feature was an additional challenge after completing basic functionality. The autocomplete had to be based on previous meetings data and filter for data for every field.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Screenshot
 
-### `npm test`
+![](./screenshot.png)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### How to open project
 
-### `npm run build`
+1. Clone git repository and open file on your local device in Code editor.
+2. Run `npm install` command to install all npm packages.
+3. Run `json-server --watch ./src/db/data.json --port 3005` command to run local API.
+4. Run `npm start` command to open developer mode.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Localhost port: `http://localhost:3005/meetings`
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## My process
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+This challenge taught me how to plan my composition in React and how to create my app with multiple components. Very important was to learn how to manage the state and how to pass data between the components using props. Additional task (creating autocomplete) was a bit challenging. I decided to start with getting the data out of JSON file for which I used [json-server documentation](https://github.com/typicode/json-server#operators) and implemented `GET /posts?title_like=server` operator. As a next step, I created a variable `suggestionsListComponent` where I mapped over an array containing suggestions for auto-complete.
 
-### `npm run eject`
+```
+suggestionsListComponent = (
+                <ul className="suggestions">
+                    {this.state.filteredSuggestions[0].map((suggestion) => {
+                        let className;
+                        return (
+                            <li
+                                className={className}
+                                key={suggestion}
+                                onClick={this.handleAutoComplete}
+                            >
+                                {suggestion}
+                            </li>
+                        );
+                    })}
+                </ul>
+            );
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+A problem I had at that point was displaying autocomplete for every field at the same time. To maintain this issue I created a variable "activeField" in the state and update it while the user focuses on a particular input. To display autocomplete I had my `suggestionsListComponent` based on the condition of the activeField variable. To hide a list of suggestions I used onBlur event. However because onBlur event was fired before the user had a chance to navigate to the choice of autocomplete, I had to set the timeout function with a slight delay. To maintain a smooth transition between each field on focus I had to add a timeout function to `handleActiveField` function as well.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Built with
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+-   React
+-   rest API
+-   CSS
+-   Flexbox
+-   Webpack
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### What I learned
 
-## Learn More
+### Continued development
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+As an extra feature, I would like to do a search bar to filter meetings. I would like to refactor the app with React Hooks.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Useful resources
 
-### Code Splitting
+-   [Official React website](https://reactjs.org/docs/getting-started.html) - Documentation. Every question regarding React answered.tag.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Author
 
-### Analyzing the Bundle Size
+-   Frontend Mentor - [@Axseinga](https://www.frontendmentor.io/profile/yourusername)
+-   LinkedIn - [Agnieszka Urbanowicz](https://www.linkedin.com/in/agnieszka-urbanowicz-051147151/)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Acknowledgments
 
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Thanks to my [Mentor - devmentor.pl](https://devmentor.pl/) - for providing me with this task and for code review.
