@@ -24,12 +24,12 @@ class CalendarForm extends React.Component {
         this.api
             .get(e.target.id, e.target.value)
             .then((data) => {
+                const [response, myData] = data;
                 const arr = [];
-                data.forEach((d) => {
+                myData.forEach((d) => {
                     const item = [d[e.target.id]];
                     arr.push(item);
                 });
-                console.log(arr);
                 this.setState((state) => {
                     return {
                         filteredSuggestions: [arr],
@@ -61,9 +61,10 @@ class CalendarForm extends React.Component {
     handleSubmit = (e) => {
         e.preventDefault();
         if (this.handleValidation()) {
-            console.log("form submitted");
             const newMeeting = { ...this.state.fields };
-            this.props.addMeeting(newMeeting);
+            const response = this.props.addMeeting(newMeeting);
+            console.log(response);
+            console.log("form submitted");
             this.setState({
                 fields: {
                     firstName: "",

@@ -7,7 +7,7 @@ class CalendarProvider {
         return promise
             .then((resp) => {
                 if (resp.ok) {
-                    return resp.json();
+                    return Promise.all([resp.status, resp.json()]);
                 }
                 return Promise.reject(resp);
             })

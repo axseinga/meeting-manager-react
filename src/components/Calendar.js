@@ -19,14 +19,15 @@ class Calendar extends React.Component {
     addMeeting = (meeting) => {
         this.api
             .add(meeting)
-            .then((data) =>
+            .then((data) => {
+                const [response, newMeeting] = data;
                 this.setState((state) => {
-                    const newMeeting = data;
                     return {
                         meetings: [...state.meetings, newMeeting],
                     };
-                })
-            )
+                });
+                return response;
+            })
             .catch((err) => console.log("error"));
     };
 
