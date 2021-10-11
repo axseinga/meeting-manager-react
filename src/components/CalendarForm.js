@@ -8,7 +8,6 @@ import {
 } from "./helpers";
 import "./CalendarForm.css";
 import CalendarProvider from "./CalendarProvider";
-import CalendarInput from "./CalendarInput";
 
 class CalendarForm extends React.Component {
     state = {
@@ -164,6 +163,15 @@ class CalendarForm extends React.Component {
                 </ul>
             );
         }
+
+        const inputs = [
+            { name: "firstName", label: "First Name" },
+            { name: "lastName", label: "Last Name" },
+            { name: "email", label: "Email" },
+            { name: "date", label: "Date" },
+            { name: "time", label: "Time" },
+        ];
+
         return (
             <div className="CalendarForm">
                 <form
@@ -171,7 +179,40 @@ class CalendarForm extends React.Component {
                     onSubmit={this.handleSubmit}
                 >
                     <div className="CalendarForm-inputs">
-                        <div className="CalendarForm-input-container">
+                        {inputs.map((i) => {
+                            const name = i.name;
+                            const label = i.label;
+                            const key = i.name;
+                            return (
+                                <div
+                                    className="CalendarForm-input-container"
+                                    key={key}
+                                >
+                                    <div className="CalendarForm-label-container">
+                                        <label htmlFor={name}>{label}</label>
+                                        {this.state.errors[name] && (
+                                            <span className="CalendarForm-warning">
+                                                {this.state.errors[name]}
+                                            </span>
+                                        )}
+                                    </div>
+                                    <input
+                                        type="text"
+                                        name={name}
+                                        value={this.state.fields[name]}
+                                        id={name}
+                                        onChange={this.handleChange}
+                                        onFocus={() =>
+                                            this.handleActiveField(name)
+                                        }
+                                        onBlur={this.handleDeactiveField}
+                                    ></input>
+                                    {this.state.activeField === name &&
+                                        suggestionsListComponent}
+                                </div>
+                            );
+                        })}
+                        {/*<div className="CalendarForm-input-container">
                             <div className="CalendarForm-label-container">
                                 <label htmlFor="firstName">First Name</label>
                                 {this.state.errors["firstName"] && (
@@ -279,7 +320,7 @@ class CalendarForm extends React.Component {
                             ></input>
                             {this.state.activeField === "time" &&
                                 suggestionsListComponent}
-                        </div>
+                                </div>*/}
                     </div>
                     <button className="CalendarForm-btn">Submit</button>
                 </form>
