@@ -16,8 +16,8 @@ class Calendar extends React.Component {
         });
     };
 
-    addMeeting = (meeting) => {
-        this.api
+    addMeeting = async (meeting) => {
+        return await this.api
             .add(meeting)
             .then((data) => {
                 const [response, newMeeting] = data;
@@ -26,6 +26,7 @@ class Calendar extends React.Component {
                         meetings: [...state.meetings, newMeeting],
                     };
                 });
+                console.log(response);
                 return response;
             })
             .catch((err) => console.log("error"));

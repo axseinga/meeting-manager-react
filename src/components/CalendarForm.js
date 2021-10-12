@@ -58,22 +58,23 @@ class CalendarForm extends React.Component {
         }
     };
 
-    handleSubmit = (e) => {
+    handleSubmit = async (e) => {
         e.preventDefault();
         if (this.handleValidation()) {
             const newMeeting = { ...this.state.fields };
-            const response = this.props.addMeeting(newMeeting);
-            console.log(response);
-            console.log("form submitted");
-            this.setState({
-                fields: {
-                    firstName: "",
-                    lastName: "",
-                    email: "",
-                    date: "",
-                    time: "",
-                },
-            });
+            let resp = await this.props.addMeeting(newMeeting);
+            if (resp === 201) {
+                console.log("form submitted");
+                this.setState({
+                    fields: {
+                        firstName: "",
+                        lastName: "",
+                        email: "",
+                        date: "",
+                        time: "",
+                    },
+                });
+            }
         } else {
             console.log("form has errrors");
         }
@@ -212,115 +213,6 @@ class CalendarForm extends React.Component {
                                 </div>
                             );
                         })}
-                        {/*<div className="CalendarForm-input-container">
-                            <div className="CalendarForm-label-container">
-                                <label htmlFor="firstName">First Name</label>
-                                {this.state.errors["firstName"] && (
-                                    <span className="CalendarForm-warning">
-                                        {this.state.errors["firstName"]}
-                                    </span>
-                                )}
-                            </div>
-                            <input
-                                type="text"
-                                name="firstName"
-                                value={this.state.fields["firstName"]}
-                                id="firstName"
-                                onChange={this.handleChange}
-                                onFocus={() =>
-                                    this.handleActiveField("firstName")
-                                }
-                                onBlur={this.handleDeactiveField}
-                            ></input>
-                            {this.state.activeField === "firstName" &&
-                                suggestionsListComponent}
-                        </div>
-                        <div className="CalendarForm-input-container">
-                            <div className="CalendarForm-label-container">
-                                <label htmlFor="lastName">Last Name</label>
-                                {this.state.errors["lastName"] && (
-                                    <span className="CalendarForm-warning">
-                                        {this.state.errors["lastName"]}
-                                    </span>
-                                )}
-                            </div>
-                            <input
-                                type="text"
-                                name="lastName"
-                                value={this.state.fields["lastName"]}
-                                id="lastName"
-                                onChange={this.handleChange}
-                                onFocus={() =>
-                                    this.handleActiveField("lastName")
-                                }
-                                onBlur={this.handleDeactiveField}
-                            ></input>
-                            {this.state.activeField === "lastName" &&
-                                suggestionsListComponent}
-                        </div>
-                        <div className="CalendarForm-input-container">
-                            <div className="CalendarForm-label-container">
-                                <label htmlFor="email">Email</label>
-                                {this.state.errors["email"] && (
-                                    <span className="CalendarForm-warning">
-                                        {this.state.errors["email"]}
-                                    </span>
-                                )}
-                            </div>
-                            <input
-                                type="text"
-                                name="email"
-                                value={this.state.fields["email"]}
-                                id="email"
-                                onChange={this.handleChange}
-                                onFocus={() => this.handleActiveField("email")}
-                                onBlur={this.handleDeactiveField}
-                            ></input>
-                            {this.state.activeField === "email" &&
-                                suggestionsListComponent}
-                        </div>
-                        <div className="CalendarForm-input-container">
-                            <div className="CalendarForm-label-container">
-                                <label htmlFor="date">Date</label>
-                                {this.state.errors["date"] && (
-                                    <span className="CalendarForm-warning">
-                                        {this.state.errors["date"]}
-                                    </span>
-                                )}
-                            </div>
-                            <input
-                                type="text"
-                                name="date"
-                                value={this.state.fields["date"]}
-                                id="date"
-                                onChange={this.handleChange}
-                                onFocus={() => this.handleActiveField("date")}
-                                onBlur={this.handleDeactiveField}
-                            ></input>
-                            {this.state.activeField === "date" &&
-                                suggestionsListComponent}
-                        </div>
-                        <div className="CalendarForm-input-container">
-                            <div className="CalendarForm-label-container">
-                                <label htmlFor="time">Time</label>
-                                {this.state.errors["time"] && (
-                                    <span className="CalendarForm-warning">
-                                        {this.state.errors["time"]}
-                                    </span>
-                                )}
-                            </div>
-                            <input
-                                type="text"
-                                name="time"
-                                value={this.state.fields["time"]}
-                                id="time"
-                                onChange={this.handleChange}
-                                onFocus={() => this.handleActiveField("time")}
-                                onBlur={this.handleDeactiveField}
-                            ></input>
-                            {this.state.activeField === "time" &&
-                                suggestionsListComponent}
-                                </div>*/}
                     </div>
                     <button className="CalendarForm-btn">Submit</button>
                 </form>
