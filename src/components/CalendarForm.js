@@ -30,9 +30,16 @@ class CalendarForm extends React.Component {
                     const item = [d[e.target.id]];
                     arr.push(item);
                 });
+                const tmp = [];
+                const uniqSuggestions = arr.filter((u) => {
+                    if (tmp.indexOf(u.toString()) < 0) {
+                        tmp.push(u.toString());
+                        return u;
+                    }
+                });
                 this.setState((state) => {
                     return {
-                        filteredSuggestions: [arr],
+                        filteredSuggestions: [uniqSuggestions],
                     };
                 });
             })
