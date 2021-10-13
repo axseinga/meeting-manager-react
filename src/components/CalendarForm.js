@@ -124,7 +124,7 @@ class CalendarForm extends React.Component {
             this.setState({
                 activeField: fieldName,
             });
-        }, 15);
+        }, 2);
     };
 
     handleDeactiveField = () => {
@@ -133,7 +133,7 @@ class CalendarForm extends React.Component {
                 activeField: null,
                 filteredSuggestions: [],
             });
-        }, 10);
+        }, 1);
     };
 
     handleAutoComplete = (e) => {
